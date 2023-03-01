@@ -134,22 +134,3 @@ if __name__ == '__main__':
     print('-' * 20)
     print(student.comparison(lector))
     
-    
-## rev_ = Reviwer('rev', 'Ov')+
-# rev_.courses_attached += ['Python+']+
-# lec_ = Lecteur('ment', 'Ov')+
-# lec_.courses_attached += ['Python']+
-# print(rev_.courses_attached)+
-# # stud = Student('stu', 'Ov', 'M')+
-# stud.courses_in_progress.append('Python')+
-# stud.rate_lecteur(lec_, 10)+
-# print(lec_.grades)+
-# rev_.rate_hw(stud, 'Python', 2)
-# rev_.rate_hw(stud, 'Python', 10)
-# rev_.rate_hw(stud, 'Python', 5)
-# print(stud)
-# print(stud.grades)
-# print(lec_)
-# print(rev_)
-
-# print(stud.comparison(lec_))
