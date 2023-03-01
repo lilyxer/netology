@@ -31,7 +31,7 @@ class Student:
             return round(summary / len_, 2)
         return 0.0
     
-    def comparison(self, other):
+    def __lt__(self, other) -> str:
         """Метод сравнения между классами"""
         s_avg = self.average()
         o_avg = other.average()
@@ -79,17 +79,17 @@ class Lecteur(Mentor):
     def __init__(self, name: str, surname: str) -> None:
         super().__init__(name, surname)
         
-    def comparison(self, other) -> str:
+    def __lt__(self, other) -> str:
         """Метод сравнения между классами"""
         s_avg = self.average()
         o_avg = other.average()
         if isinstance(other, Student) and o_avg and s_avg: # только со студентами?
             if s_avg > o_avg:
-                return f'Студент {self.name} имеет больший балл чем у {other.name}'
+                return f'Лектор {self.name} имеет больший балл чем у {other.name}'
             elif s_avg == o_avg:
-                return f'Студент {self.name} имеет равный балл с {other.name}'
+                return f'Лектор {self.name} имеет равный балл с {other.name}'
             else:
-                return f'Студент {self.name} имеет меньший балл чем у {other.name}'
+                return f'Лектор {self.name} имеет меньший балл чем у {other.name}'
         return f'{other} не является студентом, сравнить нельзя'
         
     def __str__(self) -> str:
@@ -132,5 +132,6 @@ if __name__ == '__main__':
     print('\nПроверим наших друзей после получения оценок и предметов\n')
     print(*lst, sep='\n\n')
     print('-' * 20)
-    print(student.comparison(lector))
+    print(student.__lt__(lector))
+    print(lector < student)
     
