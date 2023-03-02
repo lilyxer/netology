@@ -35,14 +35,14 @@ class Student:
         """Метод сравнения между классами"""
         s_avg = self.average()
         o_avg = other.average()
-        if isinstance(other, Lecteur) and o_avg and s_avg:
+        if isinstance(other, self.__class__) and o_avg and s_avg:
             if s_avg > o_avg:
                 return f'Студент {self.name} имеет больший балл чем у {other.name}'
             elif s_avg == o_avg:
                 return f'Студент {self.name} имеет равный балл с {other.name}'
             else:
                 return f'Студент {self.name} имеет меньший балл чем у {other.name}'
-        return f'{other} не является лектором, сравнить нельзя'
+        return f'{other} не является студентом, сравнить нельзя'
     
     def __str__(self) -> str:
         return (f'Имя: {self.name}\n'
@@ -83,14 +83,14 @@ class Lecteur(Mentor):
         """Метод сравнения между классами"""
         s_avg = self.average()
         o_avg = other.average()
-        if isinstance(other, Student) and o_avg and s_avg: # только со студентами?
+        if isinstance(other, self.__class__) and o_avg and s_avg: 
             if s_avg > o_avg:
                 return f'Лектор {self.name} имеет больший балл чем у {other.name}'
             elif s_avg == o_avg:
                 return f'Лектор {self.name} имеет равный балл с {other.name}'
             else:
                 return f'Лектор {self.name} имеет меньший балл чем у {other.name}'
-        return f'{other} не является студентом, сравнить нельзя'
+        return f'{other} не является лектором, сравнить нельзя'
         
     def __str__(self) -> str:
         return (f'{super().__str__()}\n' # как правильно перегрузить?

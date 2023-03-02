@@ -60,10 +60,11 @@ if __name__ == '__main__':
     print('\nПроверим наших друзей после получения оценок и предметов\n')
     print(*lst, sep='\n\n')
     print('-' * 20)
-    print(st_Aleksandr.__lt__(lector_Fedor))
-    print(lector_Fedor < st_Aleksandr)
-    print(st_Aleksandra.__lt__(lector_Alla))
-    print(lector_Alla < st_Aleksandra)
+    print(st_Aleksandr.__lt__(st_Aleksandra))
+    print(st_Aleksandra < st_Aleksandr)
+    print(lector_Fedor.__lt__(lector_Alla))
+    print(lector_Alla < lector_Fedor)
+    print('-' * 20)
     print('запускаем функции по подсчету средних оценок по предмету')
     lst_students = [st_Aleksandr, st_Aleksandra]
     lst_lectors = [lector_Alla, lector_Fedor]
