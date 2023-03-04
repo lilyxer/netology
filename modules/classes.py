@@ -8,7 +8,7 @@ class Student:
         self.courses_in_progress = [] # котрый проходит студент
         self.grades = {} # оценки по курсам студентов
         
-    def rate_lecteur(self, teacher: str, course: str, rate: int):
+    def rate_lecteur(self, teacher: str, course: str, rate: int) -> None:
         """сверяемся со своими курсами и курсами лектора, если есть совпадение
         и оценка не более 10 можем поставить оценку для лектора"""
         if isinstance(teacher, Lecteur) and rate in range(11):
@@ -19,7 +19,20 @@ class Student:
         else:
             print(f'Произошла ошибка, либо {teacher.name} не является лектором\n'
                   f'либо оценка {rate} не валидна')
-    
+
+    def add_course(self, obj, flag=True) -> None:
+        """append/extend"""
+        if flag:
+            if isinstance(obj, list|set|tuple):
+                self.courses_in_progress.extend(obj)
+            else:
+                self.courses_in_progress.append(obj)
+        else:
+            if isinstance(obj, list|set|tuple):
+                self.finished_courses.extend(obj)
+            else:
+                self.finished_courses.append(obj)
+            
     def average(self) -> float:
         """Возвращает среднюю оценку"""
         summary = 0
@@ -58,6 +71,13 @@ class Mentor:
         self.surname = surname
         self.courses_attached = [] # за какими курсами закреплен
         self.grades = {}
+        
+    def add_course(self, obj):
+        """append/extend"""
+        if isinstance(obj, list|set|tuple):
+            self.courses_attached.extend(obj)
+        else:
+            self.courses_attached.append(obj)
     
     def average(self) -> float:
         """Возвращает среднюю оценку"""
