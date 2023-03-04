@@ -1,4 +1,5 @@
 class Student:
+    lst_name = []
     """Класс студента, получает оценки, учится, ставит оценки преподавателям"""
     def __init__(self, name: str, surname: str, gender: str) -> None:
         self.name = name
@@ -7,6 +8,11 @@ class Student:
         self.finished_courses = [] # курс который закончил студент
         self.courses_in_progress = [] # котрый проходит студент
         self.grades = {} # оценки по курсам студентов
+        Student.add_name(self)
+    
+    @classmethod
+    def add_name(cls, self):
+        cls.lst_name.append(self)
         
     def rate_lecteur(self, teacher: str, course: str, rate: int) -> None:
         """сверяемся со своими курсами и курсами лектора, если есть совпадение
@@ -71,7 +77,7 @@ class Mentor:
         self.surname = surname
         self.courses_attached = [] # за какими курсами закреплен
         self.grades = {}
-        
+    
     def add_course(self, obj):
         """append/extend"""
         if isinstance(obj, list|set|tuple):
@@ -95,9 +101,15 @@ class Mentor:
                 f'Фамилия: {self.surname}')
         
 class Lecteur(Mentor):
+    lst_name = []
     """Класс лектора, может получать оценки от студентов"""
     def __init__(self, name: str, surname: str) -> None:
         super().__init__(name, surname)
+        Lecteur.add_name(self)
+    
+    @classmethod
+    def add_name(cls, self):
+        cls.lst_name.append(self)
         
     def __lt__(self, other) -> str:
         """Метод сравнения между классами"""
