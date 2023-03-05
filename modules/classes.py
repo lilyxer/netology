@@ -8,11 +8,12 @@ class Student:
         self.finished_courses = [] # курс который закончил студент
         self.courses_in_progress = [] # котрый проходит студент
         self.grades = {} # оценки по курсам студентов
-        Student.add_name(self)
+        self.__class__.add_name(self)
     
     @classmethod
     def add_name(cls, self):
         cls.lst_name.append(self)
+        print(f'{self.name} создан')
         
     def rate_lecteur(self, teacher: str, course: str, rate: int) -> None:
         """сверяемся со своими курсами и курсами лектора, если есть совпадение
@@ -69,6 +70,11 @@ class Student:
                 f'Средняя оценка за домашние задания: {self.average()}\n'
                 f'Курсы в процессе изучения: {self.courses_in_progress}\n'
                 f'Завершенные курсы: {self.finished_courses}')
+    
+    def delet_exemp(self):
+        self.__class__.lst_name.remove(self)
+        print(f'{self.name} delete')
+
         
 class Mentor:
     def __init__(self, name: str, surname: str) -> None:

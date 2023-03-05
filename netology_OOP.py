@@ -78,3 +78,6 @@ if __name__ == '__main__':
     course = input('Введите название курса: ')  # 
     print(average_rate_students(cl.Student.lst_name, course))
     print(average_rate_lectors(cl.Lecteur.lst_name, course))
+    st_Aleksandr.delet_exemp()
+    print(*[c.name for c in cl.Student.lst_name])
+    print(len(cl.Student.lst_name))
