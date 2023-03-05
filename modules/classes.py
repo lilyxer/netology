@@ -18,7 +18,7 @@ class Student:
         """сверяемся со своими курсами и курсами лектора, если есть совпадение
         и оценка не более 10 можем поставить оценку для лектора"""
         if isinstance(teacher, Lecteur) and rate in range(11):
-            if course in teacher.courses_attached:
+            if course in (teacher.courses_attached and self.courses_in_progress):
                 teacher.grades.setdefault(course, []).append(rate)
             else:
                 print('Совпадений по курсам не найдено')

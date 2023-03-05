@@ -44,10 +44,8 @@ if __name__ == '__main__':
     print('Добавили предметы и оценки')
     reviwer_Nikolay.add_course(['Python', 'HTML', 'C#'])
     reviwer_Anna.add_course(['Python', 'HTML', 'C#'])
-    st_Aleksandr.add_course('Python')
-    st_Aleksandr.add_course('C#')
-    st_Aleksandra.add_course('Python')
-    st_Aleksandra.add_course('HTML')
+    st_Aleksandr.add_course(['Python', 'C#'])
+    st_Aleksandra.add_course(['Python', 'HTML'])
     lector_Fedor.add_course(['Python', 'C#'])
     lector_Alla.add_course(['Python', 'HTML'])
     st_Aleksandr.add_course('HTML', False) # курса пройден
