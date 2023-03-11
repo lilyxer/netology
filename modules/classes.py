@@ -8,7 +8,7 @@ class Student:
         self.finished_courses = [] # курс который закончил студент
         self.courses_in_progress = [] # котрый проходит студент
         self.grades = {} # оценки по курсам студентов
-        Student.add_name(self)
+        self.__class__.add_name(self)
     
     @classmethod
     def add_name(cls, self):
@@ -18,7 +18,7 @@ class Student:
         """сверяемся со своими курсами и курсами лектора, если есть совпадение
         и оценка не более 10 можем поставить оценку для лектора"""
         if isinstance(teacher, Lecteur) and rate in range(11):
-            if course in (teacher.courses_attached and self.courses_in_progress):
+            if course in teacher.courses_attached:
                 teacher.grades.setdefault(course, []).append(rate)
             else:
                 print('Совпадений по курсам не найдено')
@@ -52,15 +52,8 @@ class Student:
     
     def __lt__(self, other) -> str:
         """Метод сравнения между классами"""
-        s_avg = self.average()
-        o_avg = other.average()
-        if isinstance(other, self.__class__) and o_avg and s_avg:
-            if s_avg > o_avg:
-                return f'Студент {self.name} имеет больший балл чем у {other.name}'
-            elif s_avg == o_avg:
-                return f'Студент {self.name} имеет равный балл с {other.name}'
-            else:
-                return f'Студент {self.name} имеет меньший балл чем у {other.name}'
+        if isinstance(other, self.__class__):
+            return self.average() < other.average()
         return f'{other} не является студентом, сравнить нельзя'
     
     def __str__(self) -> str:
@@ -69,6 +62,12 @@ class Student:
                 f'Средняя оценка за домашние задания: {self.average()}\n'
                 f'Курсы в процессе изучения: {self.courses_in_progress}\n'
                 f'Завершенные курсы: {self.finished_courses}')
+    
+    def delet_exemp(self):
+        """Тестовый метод - удаляет экземпляр из списка, реализован у студента только"""
+        self.__class__.lst_name.remove(self)
+        print(f'{self.name} delete')
+
         
 class Mentor:
     def __init__(self, name: str, surname: str) -> None:
@@ -113,15 +112,8 @@ class Lecteur(Mentor):
         
     def __lt__(self, other) -> str:
         """Метод сравнения между классами"""
-        s_avg = self.average()
-        o_avg = other.average()
-        if isinstance(other, self.__class__) and o_avg and s_avg: 
-            if s_avg > o_avg:
-                return f'Лектор {self.name} имеет больший балл чем у {other.name}'
-            elif s_avg == o_avg:
-                return f'Лектор {self.name} имеет равный балл с {other.name}'
-            else:
-                return f'Лектор {self.name} имеет меньший балл чем у {other.name}'
+        if isinstance(other, self.__class__):
+            return self.average() < other.average()
         return f'{other} не является лектором, сравнить нельзя'
         
     def __str__(self) -> str:

@@ -73,6 +73,6 @@ if __name__ == '__main__':
     print(lector_Alla < lector_Fedor)
     print('-' * 20)
     print('запускаем функции по подсчету средних оценок по предмету')
-    course = input('Введите название курса: ')  # 
+    course = 'Python' # input('Введите название курса: ') 
     print(average_rate_students(cl.Student.lst_name, course))
     print(average_rate_lectors(cl.Lecteur.lst_name, course))
