@@ -1,31 +1,17 @@
 from modules import classes as cl
 
-def average_rate_students(lst: list, course: str) -> str:
+def average_rate_classes(lst: list, course: str) -> str:
     """Подсчет средней оценки у студентов по курсу"""
     total_rate = 0
     total_len = 0
-    for student in lst:
-        total_rate += sum(student.grades.get(course, ''))
-        total_len += len(student.grades.get(course, ''))
+    for exemp in lst:
+        total_rate += sum(exemp.grades.get(course, ''))
+        total_len += len(exemp.grades.get(course, ''))
         if not total_len: # Можем убрать условие что курс должен быть у всех в списке предметов
-            return f'Скорее всего {course} не найден у одного из студентов, подсчитать нельзя'
+            return f'Скорее всего {course} у кого то отсутствует, подсчитать нельзя'
     if total_len: # если курс есть хотя бы у одного
-        return f'Средняя оценка у {student.__class__.__name__} по предмету {course}: {round(total_rate / total_len, 2)}'
-    return f'{course} не найден ни у одного из студентов'
-    
-    
-def average_rate_lectors(lst: list, course: str) -> str:
-    """Подсчет средней оценки у лекторов по курсу"""
-    total_rate = 0
-    total_len = 0
-    for lector in lst:
-        total_rate += sum(lector.grades.get(course, ''))
-        total_len += len(lector.grades.get(course, ''))
-        if not total_len: # Можем убрать условие что курс должен быть у всех в списке предметов
-            return f'Скорее всего {course} не найден у одного из лекторов, подсчитать нельзя'
-    if total_len: # если курс есть хотя бы у одного
-        return f'Средняя оценка у {lector.__class__.__name__} по предмету {course}: {round(total_rate / total_len, 2)}'
-    return f'{course} не найден ни у одного из лекторов'
+        return f'Средняя оценка у {exemp.__class__.__name__} по предмету {course}: {round(total_rate / total_len, 2)}'
+    return f'{course} не найден'
 
 
 if __name__ == '__main__':
@@ -74,5 +60,5 @@ if __name__ == '__main__':
     print('-' * 20)
     print('запускаем функции по подсчету средних оценок по предмету')
     course = 'Python' # input('Введите название курса: ') 
-    print(average_rate_students(cl.Student.lst_name, course))
-    print(average_rate_lectors(cl.Lecteur.lst_name, course))
+    print(average_rate_classes(cl.Student.lst_name, course))
+    print(average_rate_classes(cl.Lecteur.lst_name, course))
